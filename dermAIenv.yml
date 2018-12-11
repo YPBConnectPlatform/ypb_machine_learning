@@ -1,8 +1,22 @@
 name: derm-ai
 channels:
   - pytorch
+  - conda-forge
   - defaults
 dependencies:
+  - ca-certificates=2018.11.29=ha4d7672_0
+  - certifi=2018.8.24=py35_1001
+  - icu=58.2=hfc679d8_0
+  - jupyter_contrib_core=0.3.3=py_2
+  - jupyter_contrib_nbextensions=0.5.0=py35_0
+  - jupyter_highlight_selected_word=0.2.0=py35_0
+  - jupyter_latex_envs=1.4.4=py35_0
+  - jupyter_nbextensions_configurator=0.4.0=py35_0
+  - libiconv=1.15=h470a237_3
+  - libxml2=2.9.8=h422b904_5
+  - libxslt=1.1.32=h88dbc4e_2
+  - lxml=4.2.5=py35hc9114bc_0
+  - openssl=1.0.2p=h470a237_1
   - _nb_ext_conf=0.4.0=py35_1
   - anaconda-client=1.7.2=py35_0
   - appdirs=1.4.3=py35h28b3542_0
@@ -12,8 +26,6 @@ dependencies:
   - backcall=0.1.0=py35_0
   - blas=1.0=mkl
   - bleach=2.1.4=py35_0
-  - ca-certificates=2018.03.07=0
-  - certifi=2018.8.24=py35_1
   - cffi=1.11.5=py35he75722e_1
   - chardet=3.0.4=py35_1
   - clyent=1.2.2=py35_1
@@ -64,7 +76,6 @@ dependencies:
   - numpy=1.15.2=py35h1d66e8a_0
   - numpy-base=1.15.2=py35h81de0dd_0
   - olefile=0.46=py35_0
-  - openssl=1.0.2p=h14c3975_0
   - pandoc=2.2.3.2=0
   - pandocfilters=1.4.2=py35_1
   - parso=0.3.1=py35_0
@@ -121,6 +132,7 @@ dependencies:
     - cython==0.29.1
     - hpbandster==0.7.4
     - kiwisolver==1.0.1
+    - line-profiler==2.1.2
     - matplotlib==3.0.2
     - netifaces==0.10.7
     - pandas==0.19.2
