@@ -11,12 +11,18 @@ The repo consists of 4 files:
 # Running environment
 These files have been tested:
  - On an Amazon AWS p2.xlarge instance
- - Using the following AMI: Deep Learning Base AMI (Ubuntu) Version 13.0 (ami-06d95414dc8a10954)
+ - Using the following AMI: ubuntu-minimal/images/hvm-ssd/ubuntu-xenial-16.04-amd64-minimal-201-d88fb28e-20e8-4254-8147-30cac1406e6e-ami-05a8d655c61918795.4 (ami-0e2a01a7622dcefa0)
  - Using the conda environment listed in dermAIenv.yml
  
  # Install
  - Start an AWS p2.xlarge instance using the AMI mentioned. Make sure that you have at least 100 GB of storage and that port 8888 is accessible in your security group (Jupyter notebooks use port 8888 by default). 
- - Clone the repo to a directory of your choice on the AWS instance.
+ - Run the following code to get everything started up.
+ ```
+ sudo apt-get update
+ sudo apt-get install git-core
+ cd src
+ git clone https://github.com/paulbisso/ISIC2017_with_optimization
+ ```
  - Place the 'startup.sh' file in /home/ubuntu
 ```
 cd /home/ubuntu
