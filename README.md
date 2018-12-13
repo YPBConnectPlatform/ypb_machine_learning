@@ -21,6 +21,7 @@ These files have been tested:
  sudo apt-get update
  sudo apt-get install git-core
  sudo apt-get install unzip
+ sudo apt-get install bzip2
  git clone https://github.com/paulbisso/ISIC2017_with_optimization
  mkdir src
  ```
