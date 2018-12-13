@@ -11,5 +11,21 @@ The repo consists of 4 files:
 # Running environment
 These files have been tested:
  - On an Amazon AWS p2.xlarge instance
- - Using the following AMI: Deep Learning AMI Ubuntu Linux - 2.5_Jan2018 (ami-1197bd74)
+ - Using the following AMI: Deep Learning Base AMI (Ubuntu) Version 13.0 (ami-06d95414dc8a10954)
  - Using the conda environment listed in dermAIenv.yml
+ 
+ # Install
+ - Start an AWS p2.xlarge instance using the AMI mentioned. Make sure that you have at least 100 GB of storage and that port 8888 is accessible in your security group (Jupyter notebooks use port 8888 by default). 
+ - Clone the repo to a directory of your choice on the AWS instance.
+ - Place the 'startup.sh' file in /home/ubuntu
+'''
+cd /home/ubuntu
+chmod +x startup.sh
+./startup.sh
+conda activate derm-ai
+cd /home/ubuntu/src/derm-ai
+jupyter notebook --ip=0.0.0.0 --no-browser
+'''
+
+- Next, copy everything starting from ":8888" to a browser address bar on your local machine.
+- In front of the ":8888" paste the public IPv4 address and open, and Jupyter will open and be ready to go!
