@@ -22,12 +22,12 @@ These files have been tested:
 cd /home/ubuntu
 chmod +x startup.sh
 ./startup.sh
-. ~/.bashrc
-conda deactivate
+tmux
+source deactivate
 conda activate derm-ai
 cd /home/ubuntu/src/derm-ai
 jupyter notebook --ip=0.0.0.0 --no-browser
 ```
-
 - Next, copy everything starting from ":8888" to a browser address bar on your local machine.
 - In front of the ":8888" paste the public IPv4 address and open, and Jupyter will open and be ready to go!
+- If you like, from that point, you can use the tmux command "CTRL + b, d" to detach from that terminal window and keep working (or close your ssh / PuTTY session without deactivating the Jupyter notebook session)
