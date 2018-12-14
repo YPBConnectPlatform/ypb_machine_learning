@@ -31,7 +31,7 @@ conda activate derm-ai
 cd /home/ubuntu/src/derm-ai
 cp ISIC2017_with_optimization/DermaAI_TwoParamHpBandSter.ipynb DermaAI_TwoParamHpBandSter.ipynb
 cp ISIC2017_with_optimization/DermaAI.ipynb DermaAI.ipynb
-cp ISIC2017_with_optimization/Visualizing HpBandSter Results.ipynb Visualizing HpBandSter Results.ipynb
+cp "ISIC2017_with_optimization/Visualizing HpBandSter Results.ipynb" "Visualizing HpBandSter Results.ipynb"
 jupyter notebook --ip=0.0.0.0 --no-browser
 ```
 - Next, copy everything starting from ":8888" to a browser address bar on your local machine.
