@@ -1,6 +1,6 @@
 # Training and hyperparamter optimization for neural networks on the ISIC 2017 dataset
 
-Toy project for training neural networks on the ISIC 2017 skin cancer dataset using convolutional neural network (CNN)-based transfer learning and the HpBandSter hyperparameter optimization model. 
+Training neural networks on the ISIC 2017 skin cancer dataset using convolutional neural network (CNN)-based transfer learning in PyTorch and the HpBandSter hyperparameter optimization model. 
 
 The repo consists of 4 files:
 - DermAI.ipynb -- a Jupyter notebook for training a neural network on the dataset and generating a CSV file of predicted results.
