@@ -24,6 +24,9 @@ mv ISIC2017_with_optimization/startup.sh startup.sh
 chmod +x startup.sh
 ./startup.sh
 tmux
+```
+- In the new terminal window, run:
+```
 conda activate derm-ai
 cd /home/ubuntu/src/derm-ai
 cp ISIC2017_with_optimization/DermaAI_TwoParamHpBandSter.ipynb DermaAI_TwoParamHpBandSter.ipynb
