@@ -50,6 +50,31 @@ def view_DALIiter_images(batch_data, batch_size, normalized):
             # Plot.
             _plt.imshow(thisimg)
             
+def view_PTIter_images(batch_data,batch_size,normalized):
+    columns = 4
+    rows = (batch_size + 1) // (columns)
+
+    gs = _gridspec.GridSpec(rows, columns)
+    # Account for the fact that the image coming in may be sized as HWC vs CHW.
+    CHW_flag = 1
+    fig = _plt.figure(figsize = (32,(32 // columns) * rows))
+    for j in range(batch_size):
+        _plt.subplot(gs[j])
+        _plt.axis("off")
+        # If the image is coming in as CHW, it has to be reshaped to HWC
+        thisimg = batch_data[j].cpu().numpy()
+        if CHW_flag:
+            thisimg = _np.moveaxis(thisimg,0,-1)
+        # If the image has been normalized (assuming Alexnet-type normalization on uint8s ranging from 0 to 255 originally),
+        # then de-normalize it.
+        if normalized:
+            thisimg[:,:,0] = thisimg[:,:,0]*58.395+123.675
+            thisimg[:,:,1] = thisimg[:,:,1]*57.12+116.28
+            thisimg[:,:,2] = thisimg[:,:,2]*57.375+103.53
+            thisimg = _np.uint8(thisimg)
+        # Plot.
+        _plt.imshow(thisimg)
+            
 # Define the NVIDIA DALI iterator that will feed into the data loading pipeline. 
 # The 'image_dir' passed into __init__ is assumed to be a top-level image directory. In other words, there should be no image
 # files immediately within that directory. The algorithm below will ignore all image files that are directly within the
