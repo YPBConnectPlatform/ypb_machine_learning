@@ -29,7 +29,6 @@ tmux
 ```
 conda activate derm-ai
 pip install --extra-index-url https://developer.download.nvidia.com/compute/redist nvidia-dali
-mv
 cd /home/ubuntu/src/derm-ai
 cp ISIC2017_with_optimization/DermaAI_TwoParamHpBandSter.ipynb DermaAI_TwoParamHpBandSter.ipynb
 cp ISIC2017_with_optimization/DermaAI.ipynb DermaAI.ipynb
