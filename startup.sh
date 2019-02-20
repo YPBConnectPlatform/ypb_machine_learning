@@ -17,5 +17,4 @@ rm test.zip
 cd /home/ubuntu/src/derm-ai
 git clone https://github.com/paulbisso/ISIC2017_with_optimization
 conda env create -f /home/ubuntu/src/derm-ai/ISIC2017_with_optimization/dermAIenv.yml
-mv /home/ubuntu/src/derm-ai/ISIC2017_with_optimization/pytorch.py ~/anaconda3/envs/derm-ai/lib/python3.6/site-packages/nvidia/dali/plugin/pytorch.py
 echo ". /home/ubuntu/anaconda3/etc/profile.d/conda.sh" >> ~/.bashrc

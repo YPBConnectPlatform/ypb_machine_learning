@@ -298,7 +298,6 @@ dependencies:
     - mock==2.0.0
     - msgpack==0.5.6
     - netifaces==0.10.7
-    - nvidia-dali==0.6.0
     - onnx==1.2.1
     - pbr==5.1.1
     - plotly==2.7.0
