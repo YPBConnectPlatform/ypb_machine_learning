@@ -54,6 +54,14 @@ cp "ISIC2017_with_optimization/Visualizing HpBandSter Results.ipynb" "Visualizin
 ```
 vim hosts
 ```
+- Add the following line to hosts -- ```localhost ports=<# GPUs>``` where # GPUs is the number of GPUs on the lead AMI -- and then save.
+- Make sure that a private key called id_rsa is present in ~/.ssh/ (otherwise the scripts used for Horovod will fail)
+
+- Then, run the following: 
+```
+function runclust(){ while read -u 10 host; do host=${host%% slots*}; ssh -o "StrictHostKeyChecking no" $host ""$2""; done 10<$1; };
+runclust hosts "echo \"StrictHostKeyChecking no\" >> ~/.ssh/config"
+```
 - Next, copy everything starting from ":8888" to a browser address bar on your local machine.
 - In front of the ":8888" paste the public IPv4 address of the instance and open, and Jupyter will open and be ready to go!
 - If you like, from that point, you can use the tmux command "CTRL + b, d" to detach from that terminal window and keep working (or close your ssh / PuTTY session without deactivating the Jupyter notebook session)
