@@ -10,12 +10,12 @@ The repo consists of 4 files:
 
 # Running environment
 These files have been tested:
- - On an Amazon AWS p2.xlarge instance
+ - On Amazon AWS p2.xlarge(8xlarge;16xlarge) instances
  - Using the following AMI: Deep Learning AMI (Ubuntu) Version 20.0 (ami-0c9ae74667b049f59)
  - Using the conda environment listed in dermAIenv.yml
  
  # Install
- - Start an AWS p2.xlarge instance using the AMI mentioned. Make sure that you have at least 100 GB of storage and that port 8888 is accessible in your security group (Jupyter notebooks use port 8888 by default). 
+ - Start an AWS p2.xlarge (or .8xlarge or .16xlarge) instance using the AMI mentioned. Make sure that you have at least 100 GB of storage and that port 8888 is accessible in your security group (Jupyter notebooks use port 8888 by default). 
  - Run the following code to get everything started up.
  ```
 cd /home/ubuntu
