@@ -14,18 +14,19 @@ These files have been tested:
  - Using the following AMI: Deep Learning AMI (Ubuntu) Version 20.0 (ami-0c9ae74667b049f59)
  - Using the conda environment listed in dermAIenv.yml
  
- # Install
+ # "Cold" Install
  Here I follow along with https://aws.amazon.com/blogs/machine-learning/scalable-multi-node-training-with-tensorflow/
- - Start an AWS p2.xlarge (or .8xlarge or .16xlarge) instance using the AMI mentioned. Make sure that you have at least 100 GB of storage and that port 8888 is accessible in your security group (Jupyter notebooks use port 8888 by default). This instance will be used to download the image sets. 
+ - Create an S3 bucket to store the image sets we'll be using (I call mine derm-ai-dataset). 
+ - Start an AWS p2.xlarge (or .8xlarge or .16xlarge) instance using the AMI mentioned. Make sure that port 8888 is accessible in your security group (Jupyter notebooks use port 8888 by default). This instance will be used to download the image sets. 
 - Make sure that the instance you start has at least 200 GB of space and 10,000 IOPS -- you should use the Provisioned IOPS SSD (io1) choice for drive. 
+- Make sure that you have an IAM role for EC2 with policy AmazonS3FullAccess, and that it is attached to the running EC2 instance. 
  - Run the following code to get everything started up.
  ```
 cd /home/ubuntu
 git clone https://github.com/paulbisso/ISIC2017_with_optimization
-mv ISIC2017_with_optimization/startup.sh startup.sh
-chmod +x startup.sh
-./startup.sh
-tmux
+mv ISIC2017_with_optimization/startup_cold.sh startup_cold.sh
+chmod +x startup_cold.sh
+./startup_cold.sh
 ```
 - In the new terminal window, run:
 ```
