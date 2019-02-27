@@ -17,7 +17,7 @@ These files have been tested:
  # "Cold" Install
  Here I follow along with https://aws.amazon.com/blogs/machine-learning/scalable-multi-node-training-with-tensorflow/
  - Create an S3 bucket to store the image sets we'll be using (I call mine derm-ai-dataset). 
- - Start an AWS p2.xlarge (or .8xlarge or .16xlarge) instance using the AMI mentioned. Make sure that port 8888 is accessible in your security group (Jupyter notebooks use port 8888 by default). This instance will be used to download the image sets. 
+ - Start an AWS p2.xlarge (or .8xlarge or .16xlarge) instance using the AMI mentioned. Make sure that port 8888 is accessible in your security group (Jupyter notebooks use port 8888 by default). This instance will be used to download the image sets and will be your lead instance.
 - Make sure that the instance you start has at least 200 GB of space and 10,000 IOPS -- you should use the Provisioned IOPS SSD (io1) choice for drive. 
 - Make sure that you have an IAM role for EC2 with policy AmazonS3FullAccess, and that it is attached to the running EC2 instance. 
  - Run the following code to get everything started up.
@@ -27,6 +27,7 @@ git clone https://github.com/paulbisso/ISIC2017_with_optimization
 mv ISIC2017_with_optimization/startup_cold.sh startup_cold.sh
 chmod +x startup_cold.sh
 ./startup_cold.sh
+./startup_cool.sh
 ```
 - In the new terminal window, run:
 ```
