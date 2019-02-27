@@ -28,6 +28,7 @@ mv ISIC2017_with_optimization/startup_cold.sh startup_cold.sh
 chmod +x startup_cold.sh
 ./startup_cold.sh
 ./startup_cool.sh
+tmux
 ```
 - In the new terminal window, run:
 ```
@@ -36,6 +37,11 @@ wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu
 sudo dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
 sudo apt update
 sudo apt install libnccl2 libnccl-dev
+```
+- Note that you may need to sign up for the NVIDIA developer program to download NCCL (the second line above).
+
+- Then run: 
+```
 conda activate derm-ai
 pip install --extra-index-url https://developer.download.nvidia.com/compute/redist nvidia-dali
 HOROVOD_GPU_ALLREDUCE=NCCL pip install --no-cache-dir horovod
@@ -43,9 +49,8 @@ cd /home/ubuntu/src/derm-ai
 cp ISIC2017_with_optimization/DermaAI_TwoParamHpBandSter.ipynb DermaAI_TwoParamHpBandSter.ipynb
 cp ISIC2017_with_optimization/DermaAI.ipynb DermaAI.ipynb
 cp "ISIC2017_with_optimization/Visualizing HpBandSter Results.ipynb" "Visualizing HpBandSter Results.ipynb"
-jupyter notebook --ip=0.0.0.0 --no-browser
 ```
-- Note that you may need to sign up for the NVIDIA developer program to download NCCL (the second line above).
+
 - Next, copy everything starting from ":8888" to a browser address bar on your local machine.
 - In front of the ":8888" paste the public IPv4 address of the instance and open, and Jupyter will open and be ready to go!
 - If you like, from that point, you can use the tmux command "CTRL + b, d" to detach from that terminal window and keep working (or close your ssh / PuTTY session without deactivating the Jupyter notebook session)
