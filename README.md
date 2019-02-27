@@ -55,7 +55,7 @@ cp "ISIC2017_with_optimization/Visualizing HpBandSter Results.ipynb" "Visualizin
 vim hosts
 ```
 - Add the following line to hosts -- ```localhost ports=<# GPUs>``` where # GPUs is the number of GPUs on the lead AMI -- and then save.
-- Make sure that a private key called id_rsa is present in ~/.ssh/ (otherwise the scripts used for Horovod will fail)
+- Make sure that a private key called id_rsa is present in ~/.ssh/ (otherwise the scripts used for Horovod will fail). After moving your private key to that directory, you will need to run ```chmod 400 id_rsa``` to get the permissions right.
 
 - Then, run the following: 
 ```
