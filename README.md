@@ -23,7 +23,7 @@ These files have been tested:
  - Run the following code to get everything started up.
  ```
 cd /home/ubuntu
-git clone https://github.com/paulbisso/ISIC2017_with_optimization
+git clone -b multi-node-horovod https://github.com/paulbisso/ISIC2017_with_optimization
 mv ISIC2017_with_optimization/startup_cold.sh startup_cold.sh
 chmod +x startup_cold.sh
 ./startup_cold.sh
