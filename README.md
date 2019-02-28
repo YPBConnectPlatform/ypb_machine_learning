@@ -25,7 +25,9 @@ These files have been tested:
 cd /home/ubuntu
 git clone -b multi-node-horovod https://github.com/paulbisso/ISIC2017_with_optimization
 mv ISIC2017_with_optimization/startup_cold.sh startup_cold.sh
+mv ISIC2017_with_optimization/startup_cool.sh startup_cool.sh
 chmod +x startup_cold.sh
+chmod +x startup_cool.sh
 ./startup_cold.sh
 ./startup_cool.sh
 tmux
