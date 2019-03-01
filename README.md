@@ -76,10 +76,14 @@ function runclust(){ while read -u 10 host; do host=${host%% slots*}; ssh -o "St
 runclust hosts "echo \"StrictHostKeyChecking no\" >> ~/.ssh/config"
 ```
 
-- To get the image data, run the following:
+- To get the image data on every node, run the following:
 ```
 runclust hosts "tmux new-session -d \"export AWS_ACCESS_KEY_ID=<YOUR_ACCESS_KEY> && export AWS_SECRET_ACCESS_KEY=<YOUR_SECRET> && aws s3 sync s3://derm-ai-dataset ~/src/derm-ai\""
 ```
+
+# Warm install.
+- Assuming (1) every node has the image data, Python training scripts, private keys, conda environments etc., (2) that all the above code has been run, (3) that the lead node has the 'hosts' file in ~/src/derm-ai and is accurate and (4) that the nodes have just been started up from a stopped state, then run the following to get everything fired up:
+
 
 - On the lead node, run the following to run the training script:
 ```
