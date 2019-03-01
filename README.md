@@ -16,7 +16,7 @@ These files have been tested:
  
  # "Cold" Install
  Here I follow along with https://aws.amazon.com/blogs/machine-learning/scalable-multi-node-training-with-tensorflow/
- - Create an S3 bucket to store the image sets we'll be using (I call mine derm-ai-dataset). 
+ - Create an S3 bucket to store the image sets we'll be using (I call mine derm-ai-dataset). Folder structure is /data/train, /data/valid, /data/test.
  - Start an AWS p2.xlarge (or .8xlarge or .16xlarge) instance using the AMI mentioned. Make sure that port 8888 is accessible in your security group (Jupyter notebooks use port 8888 by default). This instance will be used to download the image sets and will be your lead instance. 
  - You need to create a security group that will be replicated across all of the nodes -- key points are that SSH needs to be accessible from any IP and that all TCP ports should be open to the entire security group.
 - Make sure that the instance you start has at least 200 GB of space and 10,000 IOPS -- you should use the Provisioned IOPS SSD (io1) choice for drive. 
@@ -26,11 +26,8 @@ These files have been tested:
 cd /home/ubuntu
 git clone -b multi-node-horovod https://github.com/paulbisso/ISIC2017_with_optimization
 mv ISIC2017_with_optimization/startup_cold.sh startup_cold.sh
-mv ISIC2017_with_optimization/startup_cool.sh startup_cool.sh
 chmod +x startup_cold.sh
-chmod +x startup_cool.sh
 ./startup_cold.sh
-./startup_cool.sh
 tmux
 ```
 - In the new terminal window, run:
