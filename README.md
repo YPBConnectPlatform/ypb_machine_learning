@@ -59,7 +59,17 @@ vim hosts
 ```
 - Add the following line to hosts -- ```localhost ports=<# GPUs>``` where # GPUs is the number of GPUs on the lead AMI -- and then save.
 - For each instance you want to use, add a line to hosts that looks like ```<private IP> ports=<# GPUs>```
-- Make sure that a private key called id_rsa is present in ~/.ssh/ (otherwise the scripts used for Horovod will fail). After moving your private key to that directory, you will need to run ```chmod 400 id_rsa``` to get the permissions right.
+
+- Run the following on your local machineto copy over the private key file you use to SSH into the lead instance. 
+```scp -i /path/to/yourkey.pem  ubuntu@lead.instance.IP.address:~/.ssh```
+
+- Then, on the lead instance, run the following to put the private key in the appropriate format and copy it to all other instances.
+```
+mv ~/.ssh/yourkey.pem ~/.ssh/id_rsa
+chmod 400 ~/.ssh/id_rsa
+function runclust(){ while read -u 10 host; do host=${host%% slots*}; scp -i ~/.ssh/id_rsa ~/.ssh/id_rsa ubuntu@$host:~/.ssh && ssh $host chmod 400 ~/.ssh/id_rsa; done 10<$1; };
+```
+You will see an "scp: permission denied" error wherever the key is already present (like localhost, in this case).
 
 - Then, run the following: 
 ```
