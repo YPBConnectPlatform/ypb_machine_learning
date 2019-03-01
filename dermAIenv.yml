@@ -316,6 +316,7 @@ dependencies:
     - tables==3.4.3
     - texttable==0.9.1
     - torch==1.0.0
+    - tqdm==4.31.1
     - typing-extensions==3.6.6
     - websocket-client==0.54.0
 prefix: /home/ubuntu/anaconda3/envs/derm-ai
