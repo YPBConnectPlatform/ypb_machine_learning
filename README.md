@@ -69,10 +69,11 @@ mv ~/.ssh/yourkey.pem ~/.ssh/id_rsa
 chmod 400 ~/.ssh/id_rsa
 function runclust(){ while read -u 10 host; do host=${host%% slots*}; scp -i ~/.ssh/id_rsa ~/.ssh/id_rsa ubuntu@$host:~/.ssh && ssh $host chmod 400 ~/.ssh/id_rsa; done 10<$1; };
 ```
-You will see an "scp: permission denied" error wherever the key is already present (like localhost, in this case).
 
 - Then, run the following: 
 ```
 function runclust(){ while read -u 10 host; do host=${host%% slots*}; ssh -o "StrictHostKeyChecking no" $host ""$2""; done 10<$1; };
 runclust hosts "echo \"StrictHostKeyChecking no\" >> ~/.ssh/config"
 ```
+You will see an "scp: permission denied" error wherever the key is already present (like localhost, in this case).
+
