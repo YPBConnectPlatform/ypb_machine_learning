@@ -79,6 +79,11 @@ function runclust(){ while read -u 10 host; do host=${host%% slots*}; ssh -o "St
 runclust hosts "echo \"StrictHostKeyChecking no\" >> ~/.ssh/config"
 ```
 
+- To get the image data, run the following:
+```
+runclust hosts "tmux new-session -d \"export AWS_ACCESS_KEY_ID=<YOUR_ACCESS_KEY> && export AWS_SECRET_ACCESS_KEY=<YOUR_SECRET> && aws s3 sync s3://derm-ai-dataset ~/src/derm-ai\""
+```
+
 - On the lead node, run the following to run the training script:
 ```
 mpirun -np <total # GPUs> -hostfile ~/src/derm-ai/hosts -mca plm_rsh_no_tree_spawn 1 \
