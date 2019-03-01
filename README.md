@@ -17,7 +17,8 @@ These files have been tested:
  # "Cold" Install
  Here I follow along with https://aws.amazon.com/blogs/machine-learning/scalable-multi-node-training-with-tensorflow/
  - Create an S3 bucket to store the image sets we'll be using (I call mine derm-ai-dataset). 
- - Start an AWS p2.xlarge (or .8xlarge or .16xlarge) instance using the AMI mentioned. Make sure that port 8888 is accessible in your security group (Jupyter notebooks use port 8888 by default). This instance will be used to download the image sets and will be your lead instance.
+ - Start an AWS p2.xlarge (or .8xlarge or .16xlarge) instance using the AMI mentioned. Make sure that port 8888 is accessible in your security group (Jupyter notebooks use port 8888 by default). This instance will be used to download the image sets and will be your lead instance. 
+ - You need to create a security group that will be replicated across all of the nodes -- key points are that SSH needs to be accessible from any IP and that all TCP ports should be open to the entire security group.
 - Make sure that the instance you start has at least 200 GB of space and 10,000 IOPS -- you should use the Provisioned IOPS SSD (io1) choice for drive. 
 - Make sure that you have an IAM role for EC2 with policy AmazonS3FullAccess, and that it is attached to the running EC2 instance. 
  - Run the following code to get everything started up.
