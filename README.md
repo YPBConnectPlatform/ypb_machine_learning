@@ -82,8 +82,13 @@ runclust hosts "tmux new-session -d \"export AWS_ACCESS_KEY_ID=<YOUR_ACCESS_KEY>
 ```
 
 # Warm install.
-- Assuming (1) every node has the image data, Python training scripts, private keys, conda environments etc., (2) that all the above code has been run, (3) that the lead node has the 'hosts' file in ~/src/derm-ai and is accurate and (4) that the nodes have just been started up from a stopped state, then run the following to get everything fired up:
-
+- Assuming (1) every node has the image data, Python training scripts, private keys, conda environments etc., (2) that all the above code has been run, (3) that the lead node has the 'hosts' file in ~/src/derm-ai and is accurate and (4) that the nodes have just been started up from a stopped state, then run the following on the lead node to get everything fired up:
+```
+cp ~/src/derm-ai/ISIC2017_with_optimization/train.sh ~/src/derm-ai/train.sh
+cd ~/src/derm-ai
+chmod +x train.sh
+./train.sh
+```
 
 - On the lead node, run the following to run the training script:
 ```
