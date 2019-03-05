@@ -91,7 +91,7 @@ chmod +x train.sh
 ./train.sh <# GPUs to use>
 ```
 
-- On the lead node, run the following to run the training script:
+- On the lead node, run the following if you just want to run the training script:
 ```
 mpirun -np <total # GPUs> -hostfile ~/src/derm-ai/hosts -mca plm_rsh_no_tree_spawn 1 \
 	-bind-to socket -map-by slot \
