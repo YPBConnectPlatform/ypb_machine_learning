@@ -14,14 +14,14 @@ These files have been tested:
  - Using the following AMI: Deep Learning AMI (Ubuntu) Version 20.0 (ami-0c9ae74667b049f59)
  - Using the conda environment listed in dermAIenv.yml
  
- # "Cold" Install
+ # "Cold" Install -- run on all nodes.
  Here I follow along with https://aws.amazon.com/blogs/machine-learning/scalable-multi-node-training-with-tensorflow/
  - Create an S3 bucket to store the image sets we'll be using (I call mine derm-ai-dataset). Folder structure is /data/train, /data/valid, /data/test.
  - Start an AWS p2.xlarge (or .8xlarge or .16xlarge) instance using the AMI mentioned. Make sure that port 8888 is accessible in your security group (Jupyter notebooks use port 8888 by default). This instance will be used to download the image sets and will be your lead instance. 
  - You need to create a security group that will be replicated across all of the nodes -- key points are that SSH needs to be accessible from any IP and that all TCP ports should be open to the entire security group.
 - Make sure that the instance you start has at least 200 GB of space and 10,000 IOPS -- you should use the Provisioned IOPS SSD (io1) choice for drive. 
 - Make sure that you have an IAM role for EC2 with policy AmazonS3FullAccess, and that it is attached to the running EC2 instance. 
- - Run the following code to get everything started up.
+ - Run the following code to get everything started up. 
  ```
 cd /home/ubuntu
 git clone -b multi-node-horovod https://github.com/paulbisso/ISIC2017_with_optimization
@@ -51,15 +51,16 @@ cp ISIC2017_with_optimization/DermaAI.ipynb DermaAI.ipynb
 cp "ISIC2017_with_optimization/Visualizing HpBandSter Results.ipynb" "Visualizing HpBandSter Results.ipynb"
 cp ISIC2017_with_optimization/DermAI_train_horovod.py DermAI_train_horovod.py
 ```
+ # "Cold" Install -- run on leader node only.
 - Next, run the following:
 ```
 vim hosts
 ```
-- Add the following line to hosts -- ```localhost ports=<# GPUs>``` where # GPUs is the number of GPUs on the lead AMI -- and then save.
-- For each instance you want to use, add a line to hosts that looks like ```<private IP> ports=<# GPUs>```
+- Add the following line to hosts -- ```localhost slots=<# GPUs>``` where # GPUs is the number of GPUs on the lead AMI -- and then save.
+- For each instance you want to use, add a line to hosts that looks like ```<private IP> slots=<# GPUs>```
 
 - Run the following on your local machineto copy over the private key file you use to SSH into the lead instance. 
-```scp -i /path/to/yourkey.pem  ubuntu@lead.instance.IP.address:~/.ssh```
+```scp -i /path/to/yourkey.pem /path/to/yourkey.pem ubuntu@lead.instance.IP.address:~/.ssh```
 
 - Then, on the lead instance, run the following to put the private key in the appropriate format and copy it to all other instances.
 ```
