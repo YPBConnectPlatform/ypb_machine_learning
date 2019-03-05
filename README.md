@@ -2,6 +2,8 @@
 
 Training neural networks on the ISIC 2017 skin cancer dataset using convolutional neural network (CNN)-based transfer learning in PyTorch and the HpBandSter hyperparameter optimization model. 
 
+https://aws.amazon.com/blogs/machine-learning/scalable-multi-node-training-with-tensorflow/ is a great resource for multi-node, multi-GPU training.
+
 # Running environment
 These files have been tested:
  - On Amazon AWS p2.xlarge(8xlarge;16xlarge) instances
