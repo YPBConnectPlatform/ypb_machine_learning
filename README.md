@@ -87,7 +87,7 @@ runclust hosts "tmux new-session -d \"export AWS_ACCESS_KEY_ID=<YOUR_ACCESS_KEY>
 cp ~/src/derm-ai/ISIC2017_with_optimization/train.sh ~/src/derm-ai/train.sh
 cd ~/src/derm-ai
 chmod +x train.sh
-./train.sh
+./train.sh <# GPUs to use>
 ```
 
 - On the lead node, run the following to run the training script:
