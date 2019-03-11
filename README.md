@@ -16,15 +16,13 @@ These files have been tested:
  
  # "Cold" Install -- run on all nodes.
  Here I follow along with https://aws.amazon.com/blogs/machine-learning/scalable-multi-node-training-with-tensorflow/
- - Create an S3 bucket to store the image sets we'll be using (I call mine derm-ai-dataset). Folder structure is /data/train, /data/valid, /data/test.
  - Start an AWS p2.xlarge (or .8xlarge or .16xlarge) instance using the AMI mentioned. Make sure that port 8888 is accessible in your security group (Jupyter notebooks use port 8888 by default). This instance will be used to download the image sets and will be your lead instance. 
  - You need to create a security group that will be replicated across all of the nodes -- key points are that SSH needs to be accessible from any IP and that all TCP ports should be open to the entire security group.
-- Make sure that the instance you start has at least 200 GB of space and 10,000 IOPS -- you should use the Provisioned IOPS SSD (io1) choice for drive. 
-- Make sure that you have an IAM role for EC2 with policy AmazonS3FullAccess, and that it is attached to the running EC2 instance. 
+- Make sure that the instance you start has at least 200 GB of space.
  - Run the following code to get everything started up. 
  ```
 cd /home/ubuntu
-git clone -b multi-node-horovod https://github.com/paulbisso/ISIC2017_with_optimization
+git clone -b multi-node-horovod_from_scratch https://github.com/paulbisso/ISIC2017_with_optimization
 mv ISIC2017_with_optimization/startup_cold.sh startup_cold.sh
 chmod +x startup_cold.sh
 ./startup_cold.sh
@@ -33,17 +31,8 @@ tmux
 - In the new terminal window, run:
 ```
 cd /home/ubuntu/src
-wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
-sudo dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
-sudo apt update
-sudo apt install libnccl2 libnccl-dev
-```
-- Note that you may need to sign up for the NVIDIA developer program to download NCCL (the second line above).
-
-- Then run: 
-```
 conda activate derm-ai
-pip install --extra-index-url https://developer.download.nvidia.com/compute/redist nvidia-dali
+pip install --extra-index-url https://developer.download.nvidia.com/compute/redist nvidia-dali==0.6.1
 HOROVOD_GPU_ALLREDUCE=NCCL pip install --no-cache-dir horovod
 cd /home/ubuntu/src/derm-ai
 cp ISIC2017_with_optimization/DermaAI_TwoParamHpBandSter.ipynb DermaAI_TwoParamHpBandSter.ipynb
@@ -75,11 +64,6 @@ You will see an "scp: permission denied" error wherever the key is already prese
 ```
 function runclust(){ while read -u 10 host; do host=${host%% slots*}; ssh -o "StrictHostKeyChecking no" $host ""$2""; done 10<$1; };
 runclust hosts "echo \"StrictHostKeyChecking no\" >> ~/.ssh/config"
-```
-
-- To get the image data on every node, run the following:
-```
-runclust hosts "tmux new-session -d \"export AWS_ACCESS_KEY_ID=<YOUR_ACCESS_KEY> && export AWS_SECRET_ACCESS_KEY=<YOUR_SECRET> && aws s3 sync s3://derm-ai-dataset ~/src/derm-ai\""
 ```
 
 # Warm install.
